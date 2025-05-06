@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Chuyển font size về cỡ 1 rem = 10px */
+html {
+  font-size: 62.5%;
+}
+
+/* Khôi phục lại cỡ chữ mặc định (16px) theo rem vì phần trên đã đổi 1 rem = 10px rồi */
+body {
+  font-size: 1.6rem;
+}
