@@ -1,6 +1,11 @@
 * {
   box-sizing: border-box;
 }
+:root {
+  /* Khai báo biến để gom nhóm lại cho dễ dàng sử dụng lại sau này */
+  --font-heading: "Sen", sans-serif;
+  --primary-color: #ffb900;
+}
 
 /* Chuyển font size về cỡ 1 rem = 10px */
 html {
@@ -10,4 +15,395 @@ html {
 /* Khôi phục lại cỡ chữ mặc định (16px) theo rem vì phần trên đã đổi 1 rem = 10px rồi */
 body {
   font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+}
+/* ========== Common - Dùng chung ========== */
+a {
+  text-decoration: none;
+}
+
+.heading-lv2 {
+  color: #171100;
+  font-family: var(--font-heading);
+  font-size: 3.8rem;
+  font-weight: 700;
+  line-height: 1.27;
+  letter-spacing: -0.76px;
+}
+
+.btn {
+  display: inline-block;
+  min-width: 118px;
+  padding: 0 16px;
+  line-height: 50px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-radius: 999px;
+  background: #171100;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.main-content {
+  width: 1170px;
+  max-width: calc(100% - 48px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ========== Header ========== */
+.header {
+  background: #fffcf4;
+}
+
+.header.fixed {
+  z-index: 1; /* Để dòng NAV luôn đứng đầu, nếu không khi cuộn sẽ bị ảnh đè lên */
+  position: sticky;
+  top: -28px;
+}
+.header .body {
+  display: flex;
+  align-items: center;
+  padding: 36px 0 8px;
+}
+
+/* Với dòng nav này thì logo, nav và btn action đang đồng cấp, nhưng btn action đứng sau nav nên khi đẩy nav sang trái thì btn action tự động bị sang theo 14:30 clip https://youtu.be/s5F3mFlUKEY?si=V5nz0STcNgtLg936  */
+.nav {
+  margin-left: auto;
+}
+
+.nav ul {
+  display: flex;
+}
+
+.nav a {
+  /* Tạo ra để điều khiển dấu - xuống dưới chân nút Home ở mục .nav li.active a::after theo bài 87.2 */
+  position: relative;
+  /* ----- */
+  color: #5f5b53;
+  font-size: 1.6rem;
+  padding: 8px 21px;
+}
+/* Chức năng chỉ vào các nút ở NAV làm thay đổi thể hiện link */
+.nav li.active a,
+.nav a:hover {
+  color: #171100;
+  /* Không dùng font weight để thể hiện phần hover vì khi chỉ vào sẽ bị thay đổi lệch phần tử, nên ta dùng text shadow để vẫn thể hiện sự thay đổi mà không làm đổi phần tử */
+  /* font-weight: 600; */
+  text-shadow: 1px 0 0 currentColor;
+}
+
+/* Tạo ra dấu - dưới chân nút theo class active trong nav */
+.nav li.active a::after {
+  position: absolute;
+  left: 21px; /* Dịch sang trái 21px để nằm vào cùng với chữ H */
+  bottom: 6px; /* Cách chữ H 6 pixel từ chân chữ H xuống */
+  display: block;
+  content: "";
+  width: 12px;
+  height: 2px;
+  border-radius: 1px;
+  background: #171100;
+}
+
+.header .btn-sign-up {
+  min-width: 144px;
+}
+
+.header .action {
+  margin-left: 49px;
+}
+/* ========== Hero ========== */
+.hero {
+  padding: 56px 0 65px;
+  background-color: #fffcf4;
+}
+
+.hero .body {
+  display: flex;
+}
+
+/* ========== Hero left: Khoi anh dau tien  ========== */
+.hero .media-block {
+  width: 48%;
+  position: relative;
+}
+.hero .content-block {
+  width: 52%;
+}
+
+.hero .media-block .img {
+  width: 470px;
+  height: 685px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* Tạo khối nổi trên ảnh trong khung đầu tiên  */
+.hero .hero-summary {
+  padding: 24px;
+  width: 270px;
+  position: absolute;
+  bottom: 48px;
+  right: 0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0px 16px 32px 0px rgba(0, 0, 0, 0.05);
+}
+
+.hero-summary .item {
+  display: flex;
+  align-items: center;
+}
+/* Tác động vào item thứ 2 trở đi từ class item đầu tiên, thứ 3 cũng đứng sau cái đầu tiên */
+.hero-summary .item + .item {
+  margin-top: 22px;
+}
+
+.hero-summary .item .icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff9e8;
+}
+.hero-summary .item .icon2 {
+  background-color: #fcefff;
+}
+.hero-summary .item .icon3 {
+  background-color: #ebeaff;
+}
+.hero-summary .info {
+  margin-left: 16px;
+}
+.hero-summary .label {
+  color: #5f5b53;
+  font-size: 1.4rem; /* 14 pixel */
+  line-height: 1.86; /* 185.714% */
+}
+
+.hero-summary .title {
+  color: #171100;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.67; /* 166.667% */
+}
+
+/* ========== Hero right ========== */
+.hero .body .content-block {
+  width: 52%;
+  padding-left: 130px;
+  padding-top: 64px;
+}
+
+.hero .heading {
+  color: #171100;
+  /* Biến được khai báo ở root, kiến thức ở bài 86 */
+  font-family: var(--font-heading);
+  font-size: 5.8rem; /* 1rem = 10 px > 5.8 rem = 58px */
+  font-weight: 700;
+  line-height: 1.17;
+  letter-spacing: -1.16px;
+}
+
+.hero .desc {
+  margin-top: 22px;
+  color: #5f5b53;
+  font-size: 1.8rem;
+  line-height: 1.67;
+}
+
+.hero .cta-group {
+  margin-top: 38px;
+  display: flex;
+}
+
+.hero-cta {
+  min-width: 180px;
+  line-height: 64px;
+  background-color: var(--primary-color);
+}
+
+.hero .watch-video {
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  margin-left: 28px;
+  cursor: pointer;
+}
+
+.hero .watch-video .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  background: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.07);
+}
+
+.hero .watch-video span {
+  margin-left: 14px;
+  color: #171100;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.67;
+}
+.hero .desc-recent {
+  margin-top: 48px;
+}
+
+.hero .stats {
+  margin-top: 8px;
+}
+
+.hero,
+.stats strong {
+  margin-right: 15px;
+  color: #171100;
+  font-family: var(--font-heading);
+  font-size: 4.4rem;
+  font-weight: 700;
+  line-height: 1.23;
+}
+
+.hero,
+.stats strong:nth-child(2) {
+  margin-left: 28px;
+}
+/* ========== Popular ========== */
+
+.popular {
+  padding: 65px 0;
+  margin-top: 135px;
+}
+
+/* ========== Popular Top ========== */
+
+.popular-top .desc {
+  margin-top: 16px;
+  width: 458px;
+  color: #5f5b53;
+  font-size: 1.8rem;
+  line-height: 1.67;
+}
+.popular-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popular-top .controls {
+  display: flex;
+  gap: 18px; /* khoảng cách giữa 2 nút < > */
+}
+
+.popular-top .control-btn {
+  display: flex;
+  /* Căn giữa dấu mũi < > vào trong cái border tròn vừa vẽ */
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+/* Khi hover vao nut thi nen doi thanh mau chu dao va dau < > doi thanh mau trang */
+.popular-top .control-btn:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* ========== Popular bottom ========== */
+.popular .course-list {
+  display: flex;
+  gap: 30px;
+  margin-top: 55px;
+}
+
+.popular .course-item {
+  flex: 1;
+  border-radius: 12px;
+  border: 1px solid #e2dfda;
+  background: #fff;
+}
+
+.popular .course-item:hover {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0px 18px 36px 0px rgba(0, 0, 0, 0.05);
+}
+
+.popular .course-item .info {
+  padding: 16px 22px 22px;
+}
+
+.popular .course-item .thumb {
+  /* Phần bo ảnh trong thumb */
+  border-radius: 12px 12px 0px 0px;
+  height: 278px;
+  /* Thông số này để ảnh không bị méo */
+  object-fit: cover;
+  /* Bắt buộc khối ảnh này chỉ chiếm 100% khung thôi */
+  width: 100%;
+}
+.popular .course-item .foot,
+.popular .course-item .rating,
+.course-list .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popular .course-item .title a {
+  color: #171100;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.67;
+}
+
+/* Chỉnh sửa phần giá trị rating cạnh ngôi sao */
+.popular .rating .value {
+  margin-left: 6px;
+  color: #fea31b;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.popular .course-item .desc {
+  margin-top: 6px;
+  color: #5f5b53;
+  font-size: 1.4rem;
+  line-height: 1.86;
+}
+
+.popular .course-item .foot {
+  margin-top: 12px;
+}
+
+.popular .course-item .price {
+  color: #171100;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.67;
+}
+.popular .course-item .btn-book {
+  border: none;
+}
+
+.popular .course-item .btn-book:hover {
+  background: var(--primary-color);
 }
